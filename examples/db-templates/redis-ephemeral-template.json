@@ -114,12 +114,6 @@
                     "port": 6379
                   }
                 },
-                "env": [
-                  {
-                    "name": "REDIS_PASSWORD",
-                    "value": "${REDIS_PASSWORD}"
-                  }
-                ],
                 "resources": {
                   "limits": {
                     "memory": "${MEMORY_LIMIT}"
@@ -175,14 +169,6 @@
       "displayName": "Database Service Name",
       "description": "The name of the OpenShift Service exposed for the database.",
       "value": "redis",
-      "required": true
-    },
-    {
-      "name": "REDIS_PASSWORD",
-      "displayName": "Redis Connection Password",
-      "description": "Password for the Redis connection user.",
-      "generate": "expression",
-      "from": "[a-zA-Z0-9]{16}",
       "required": true
     },
     {
