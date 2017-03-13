@@ -93,7 +93,7 @@
             "containers": [
               {
                 "name": "redis",
-                "image": " ",
+                "image": "registry.access.redhat.com/rhscl/redis-32-rhel7",
                 "ports": [
                   {
                     "containerPort": 6379,
@@ -104,7 +104,7 @@
                   "timeoutSeconds": 1,
                   "initialDelaySeconds": 5,
                   "exec": {
-                    "command": [ "/bin/sh", "-i", "-c", "test \"$(redis-cli -h 127.0.0.1 -a $REDIS_PASSWORD ping)\" == \"PONG\""]
+                    "command": [ "/bin/sh", "-i", "-c", "test \"$(redis-cli -h 127.0.0.1 ping)\" == \"PONG\""]
                   }
                 },
                 "livenessProbe": {
@@ -114,12 +114,6 @@
                     "port": 6379
                   }
                 },
-                "env": [
-                  {
-                    "name": "REDIS_PASSWORD",
-                    "value": "${REDIS_PASSWORD}"
-                  }
-                ],
                 "resources": {
                   "limits": {
                     "memory": "${MEMORY_LIMIT}"
@@ -175,14 +169,6 @@
       "displayName": "Database Service Name",
       "description": "The name of the OpenShift Service exposed for the database.",
       "value": "redis",
-      "required": true
-    },
-    {
-      "name": "REDIS_PASSWORD",
-      "displayName": "Redis Connection Password",
-      "description": "Password for the Redis connection user.",
-      "generate": "expression",
-      "from": "[a-zA-Z0-9]{16}",
       "required": true
     },
     {
