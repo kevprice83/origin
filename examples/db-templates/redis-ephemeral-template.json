@@ -93,7 +93,7 @@
             "containers": [
               {
                 "name": "redis",
-                "image": " ",
+                "image": "registry.access.redhat.com/rhscl/redis-32-rhel7",
                 "ports": [
                   {
                     "containerPort": 6379,
